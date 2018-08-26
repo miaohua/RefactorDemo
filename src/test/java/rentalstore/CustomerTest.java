@@ -10,8 +10,11 @@ public class CustomerTest {
 
     @Test
     public void should_return_correct_statement_given_customer_has_no_rental() {
-        String statement = customer.statement();
-        assertEquals("Rental Record for Hazel\nAmount owed is 0.0\nYou earned 0 frequent renter points", statement);
+
+        String statement = customer.htmlStatement();
+        assertEquals("<H1>Rentals for <EM>Hazel</EM></H1><P>\n" +
+                "<P>You owe<EM>0.0</EM><P>\n" +
+                "On this rental you earned <EM>0</EM> frequent renter points<P>", statement);
     }
 
     @Test
@@ -87,8 +90,8 @@ public class CustomerTest {
     @Test
     public void should_return_correct_html_statement_given_customer_has_rent_one_child_movie_for_4_day() {
         Movie childrenMovie = new Movie("Titanic", 2);
-        Rental oneDayRental = new Rental(childrenMovie, 1);
-        customer.addRental(oneDayRental);
+        Rental fourDayRental = new Rental(childrenMovie, 4);
+        customer.addRental(fourDayRental);
 
         String statement = customer.htmlStatement();
 
