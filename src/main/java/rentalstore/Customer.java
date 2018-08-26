@@ -20,22 +20,18 @@ public class Customer {
     }
 
     public String statement() {
-        Enumeration rentals = this.rentals.elements();
-        AbstractStatement Statement = new Statement();
-        Statement.setRentals(rentals);
-        Statement.setCustomerName(getName());
-        String statement = Statement.statement();
-
-        return statement;
+        return common(new Statement());
     }
 
     public String htmlStatement() {
-        Enumeration rentals = this.rentals.elements();
-        AbstractStatement htmlStatement = new HtmlStatement();
-        htmlStatement.setRentals(rentals);
-        htmlStatement.setCustomerName(getName());
-        String statement = htmlStatement.statement();
+        return common(new HtmlStatement());
+    }
 
-        return statement;
+    public String common(AbstractStatement statement){
+        Enumeration rentals = this.rentals.elements();
+        statement.setRentals(rentals);
+        statement.setCustomerName(getName());
+        String result = statement.statement();
+        return result;
     }
 }
