@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 
 public class CustomerTest {
 
-    private Customer customer = new Customer("Jerry");
+    private Customer customer = new Customer("Hazel");
 
     @Test
     public void should_return_correct_statement_given_customer_has_no_rental() {
