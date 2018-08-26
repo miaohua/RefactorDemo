@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 
 public class CustomerTest {
 
-    private Customer customer = new Customer("Hazel");
+    private Customer customer = new Customer("Jerry");
 
     @Test
     public void should_return_correct_statement_given_customer_has_no_rental() {
@@ -98,7 +98,7 @@ public class CustomerTest {
     }
 
     @Test
-    public void should_return_correct_html_statement_given_customer_has_rent_one_child_movie_for_4_day() {
+    public void should_return_correct_html_statement_given_customer_has_rent_one_child_movie_for_one_day() {
         Movie childrenMovie = new Movie("Titanic", 2);
         Rental fourDayRental = new Rental(childrenMovie, 4);
         customer.addRental(fourDayRental);
