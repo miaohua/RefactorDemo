@@ -83,6 +83,9 @@ public class Customer {
                 case Movie.NEW_RELEASE:
                     thisAmount+=each.getDayRented()*3;
                     break;
+                case Movie.CHILDRENS:
+                    thisAmount+=1.5;
+                    break;
             }
 
             //add frequent renter points
