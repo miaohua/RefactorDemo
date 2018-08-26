@@ -6,7 +6,7 @@ public abstract class AbstractStatement {
 
     private Enumeration rentals ;
     private String customerName;
-    private int frequentRenterPoints = 0;
+    private double frequentRenterPoints = 0;
 
     public Enumeration getRentals() {
         return rentals;
@@ -35,11 +35,13 @@ public abstract class AbstractStatement {
                     thisAmount = getTotalCharge(2.0,2,each);
                     break;
                 case Movie.NEW_RELEASE:
-                    thisAmount+=each.getDayRented()*3;
+                    thisAmount += each.getDayRented()*3;
                     break;
                 case Movie.CHILDRENS:
                     thisAmount = getTotalCharge(1.5,3,each);
                     break;
+                case Movie.ART_FLIM:
+                    thisAmount += 6;
             }
             frequentRenterPoints = getTotalFrequentRenterPoints(each);
             result += figures(each.getMovie().getTitle(),thisAmount);
@@ -56,9 +58,12 @@ public abstract class AbstractStatement {
         return initialAmount;
     }
 
-    int getTotalFrequentRenterPoints(Rental each) {
-        frequentRenterPoints ++;
-        if((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDayRented() > 1){
+    double getTotalFrequentRenterPoints(Rental each) {
+        if((each.getMovie().getPriceCode() == Movie.ART_FLIM)){
+            frequentRenterPoints = 1.5;
+        }else if((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDayRented() > 1){
+            frequentRenterPoints += 2;
+        }else {
             frequentRenterPoints ++;
         }
         return frequentRenterPoints;
@@ -68,5 +73,5 @@ public abstract class AbstractStatement {
 
     public abstract String figures(String movieTitle, double thisAmount);
 
-    public abstract String footer(double totalAmount, int frequentRenterPoints);
+    public abstract String footer(double totalAmount, double frequentRenterPoints);
 }

@@ -19,7 +19,7 @@ public class HtmlStatement extends AbstractStatement {
     }
 
     @Override
-    public String footer(double totalAmount, int frequentRenterPoints) {
+    public String footer(double totalAmount, double frequentRenterPoints) {
         String result= "";
         result  += "<P>You owe<EM>"
                 + String.valueOf(totalAmount)

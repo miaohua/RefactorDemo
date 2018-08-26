@@ -20,7 +20,7 @@ public class Statement extends AbstractStatement{
     }
 
     @Override
-    public String footer(double totalAmount, int frequentRenterPoints) {
+    public String footer(double totalAmount, double frequentRenterPoints) {
         String result= "";
         result  += "You owe "
                 + String.valueOf(totalAmount)
