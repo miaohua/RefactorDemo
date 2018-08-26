@@ -113,5 +113,4 @@ public class CustomerTest {
                 "On this rental you earned <EM>1</EM> frequent renter points<P>", statement);
     }
 
-
 }
