@@ -33,19 +33,13 @@ public abstract class AbstractStatement {
 
             switch (each.getMovie().getPriceCode()){
                 case Movie.REGULAR:
-                    thisAmount += 2;
-                    if(each.getDayRented() > 2){
-                        thisAmount+=(each.getDayRented() - 2) * 1.5;
-                    }
+                    thisAmount = getTotalCharge(2.0,2,each);
                     break;
                 case Movie.NEW_RELEASE:
                     thisAmount+=each.getDayRented()*3;
                     break;
                 case Movie.CHILDRENS:
-                    thisAmount+=1.5;
-                    if(each.getDayRented() > 3){
-                        thisAmount += (each.getDayRented() -3)*1.5;
-                    }
+                    thisAmount = getTotalCharge(1.5,3,each);
                     break;
             }
 
@@ -64,6 +58,14 @@ public abstract class AbstractStatement {
         //add footer lines
         result += footer(totalAmount,frequentRenterPoints);
         return result;
+    }
+
+    double getTotalCharge(double initialAmount,int rentDay ,Rental each) {
+        //Rental each = (Rental) rentals.nextElement();
+        if(each.getDayRented() > rentDay){
+            initialAmount += (each.getDayRented() - rentDay)*1.5;
+        }
+        return initialAmount;
     }
 
     public abstract String headerString(String customerName);
