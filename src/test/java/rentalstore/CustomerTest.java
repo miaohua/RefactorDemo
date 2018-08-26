@@ -70,5 +70,19 @@ public class CustomerTest {
                 "On this rental you earned <EM>2</EM> frequent renter points<P>", statement);
     }
 
+    @Test
+    public void should_return_correct_html_statement_given_customer_has_rent_one_child_movie_for_1_day() {
+        Movie childrenMovie = new Movie("Titanic", 2);
+        Rental oneDayRental = new Rental(childrenMovie, 1);
+        customer.addRental(oneDayRental);
+
+        String statement = customer.htmlStatement();
+
+        assertEquals("<H1>Rentals for <EM>Hazel</EM></H1><P>\n" +
+                "Titanic: 1.5<BR>\n" +
+                "<P>You owe<EM>1.5</EM><P>\n" +
+                "On this rental you earned <EM>1</EM> frequent renter points<P>", statement);
+    }
+
 
 }
