@@ -26,7 +26,6 @@ public abstract class AbstractStatement {
 
     public String statement() {
         double totalAmount = 0;
-
         String result = headerString(customerName);
         while(rentals.hasMoreElements()){
             double thisAmount =0;
@@ -43,10 +42,6 @@ public abstract class AbstractStatement {
                     break;
             }
             frequentRenterPoints = getTotalFrequentRenterPoints(each);
-//            frequentRenterPoints ++;
-//            if((each.getMovie().getPriceCode() == Movie.NEW_RELEASE) && each.getDayRented() > 1){
-//                frequentRenterPoints ++;
-//            }
             result += figures(each.getMovie().getTitle(),thisAmount);
             totalAmount += thisAmount;
         }
