@@ -19,6 +19,16 @@ public class Customer {
         return name;
     }
 
+    public String statement() {
+        Enumeration rentals = this.rentals.elements();
+        AbstractStatement Statement = new Statement();
+        Statement.setRentals(rentals);
+        Statement.setCustomerName(getName());
+        String statement = Statement.statement();
+
+        return statement;
+    }
+
     public String htmlStatement() {
         Enumeration rentals = this.rentals.elements();
         AbstractStatement htmlStatement = new HtmlStatement();
